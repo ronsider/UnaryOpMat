@@ -23,6 +23,13 @@ link_directories(${RAYLIB_DIR}/lib)
 # Add library directories
 #link_directories(${RAYLIB_DIR}/libs)
 
+if (MSVC)
+    add_compile_options(/W3 /permissive- /analyze /wd4996)
+else()
+    add_compile_options(-Wall -Wextra -Werror -pedantic -Wshadow -Wnon-virtual-dtor -Wold-style-cast -Wcast-align -Wunused -Woverloaded-virtual -Wconversion -Wsign-conversion -Wduplicated-cond -Wduplicated-branches -Wlogical-op -Wnull-dereference -Wuseless-cast -Wdouble-promotion)
+endif()
+
+
 # Source files
 file(GLOB_RECURSE SOURCES "src/*.cpp")
 
